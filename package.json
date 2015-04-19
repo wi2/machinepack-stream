@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "work with stream readable, writable",
   "scripts": {
-    "test": "mocha tests/test.js && node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
+    "test": "mocha tests/test.js"
   },
   "keywords": [
     "Stream",
