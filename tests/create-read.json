@@ -9,6 +9,12 @@
     },
     {
       "using": {
+        "text": "A simple text"
+      },
+      "outcome": "success"
+    },
+    {
+      "using": {
         "path": "README"
       },
       "outcome": "pathError"

@@ -26,6 +26,9 @@ module.exports = {
     pathError: {
       description: 'File does not exist.',
     },
+    noStreamError: {
+      description: 'does not exist.',
+    },
     success: {
       description: 'Done.',
       "getExample": function(inputs, env, input) {
@@ -42,7 +45,24 @@ module.exports = {
   fn: function (inputs,exits) {
     if (inputs.path && !require('fs').existsSync(inputs.path))
       return exits.pathError();
-    return exits.success(require('fs').createReadStream(inputs.path||process.stdin));
+    else {
+      if (!inputs.text)
+        inputs.text = '';
+      var stream = new (require('stream'))();
+      stream.on('data', function(data) {
+        process.stdout.write(data);
+      });
+      stream.emit('data', inputs.text);
+    }
+    try {
+      return exits.success(inputs.path
+                          ?
+                          require('fs').createReadStream(inputs.path)
+                          :
+                          stream);
+    } catch (err) {
+      return exits.error(err);
+    }
   },
 
 };
