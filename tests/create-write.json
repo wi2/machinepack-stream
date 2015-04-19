@@ -1,0 +1,11 @@
+{
+  "machine": "create-write",
+  "expectations": [
+    {
+      "using": {
+        "path": "README2.md"
+      },
+      "outcome": "success"
+    }
+  ]
+}

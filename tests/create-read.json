@@ -1,0 +1,17 @@
+{
+  "machine": "create-read",
+  "expectations": [
+    {
+      "using": {
+        "path": "README.md"
+      },
+      "outcome": "success"
+    },
+    {
+      "using": {
+        "path": "README"
+      },
+      "outcome": "pathError"
+    }
+  ]
+}
