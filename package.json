@@ -7,10 +7,12 @@
   },
   "keywords": [
     "Stream",
+    "readable",
+    "writable",
     "machines",
     "machinepack"
   ],
-  "author": "",
+  "author": "wi2",
   "license": "MIT",
   "dependencies": {
     "isstream": "^0.1.2",
@@ -33,6 +35,6 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:wi2/machinepack-stream.git"
   }
 }

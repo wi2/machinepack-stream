@@ -8,7 +8,7 @@
 work with stream readable, writable
 
 
-## Installation &nbsp; [![NPM version](https://badge.fury.io/js/machinepack-stream.svg)](http://badge.fury.io/js/machinepack-stream) [![Build Status](https://travis-ci.org/mikermcneil/machinepack-stream.png?branch=master)](https://travis-ci.org/mikermcneil/machinepack-stream)
+## Installation &nbsp; [![NPM version](https://badge.fury.io/js/machinepack-stream.svg)](http://badge.fury.io/js/machinepack-stream) [![Build Status](https://travis-ci.org/wi2/machinepack-stream.png?branch=master)](https://travis-ci.org/wi2/machinepack-stream)
 
 ```sh
 $ npm install machinepack-stream
