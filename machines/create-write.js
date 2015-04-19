@@ -18,7 +18,7 @@ module.exports = {
       "friendlyName": "path",
       "description": "A destination path file",
       "example": 'tmp.log',
-      "required": false,
+      "required": true,
       "type": "string",
       "name": "path"
     }
@@ -50,7 +50,7 @@ module.exports = {
     if (inputs.stream && require('isstream')(inputs.stream) !== true)
       return exits.errorNotStream({error: "It's not a valid stream"});
     try {
-      return exits.success( (inputs.stream||process.stdin).pipe(require('fs').createWriteStream(inputs.path||process.stdout)) );
+      return exits.success( (inputs.stream||process.stdin).pipe(require('fs').createWriteStream(inputs.path)) );
     } catch (err) {
       return exits.error(err);
     }

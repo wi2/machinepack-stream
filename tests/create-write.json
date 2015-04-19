@@ -3,11 +3,20 @@
   "expectations": [
     {
       "using": {
-        "path": "README2.md",
+        "path": "README.md.3",
         "stream": "a stream"
       },
       "outcome": "errorNotStream"
+    },
+    {
+      "using": {
+        "path": "README.md.4"
+      },
+      "outcome": "success"
+    },
+    {
+      "using": {},
+      "outcome": "error"
     }
-
   ]
 }

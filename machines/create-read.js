@@ -51,7 +51,8 @@ module.exports = {
   },
 
   fn: function (inputs,exits) {
-    if (inputs.path && !require('fs').existsSync(inputs.path))
+    var fs = require('fs');
+    if (inputs.path && !fs.existsSync(inputs.path))
       return exits.pathError();
     else if (!inputs.text)
       inputs.text = '';
@@ -60,7 +61,7 @@ module.exports = {
       return exits.success(
         inputs.path
         ?
-        require('fs').createReadStream(inputs.path)
+        fs.createReadStream(inputs.path)
         :
         require('resumer')().queue(inputs.text).end()
       );
