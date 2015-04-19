@@ -29,7 +29,7 @@ module.exports = {
     success: {
       description: 'Done.',
       "getExample": function(inputs, env, input) {
-        return require('fs').createReadStream(inputs.path);
+        return require('fs').createReadStream(inputs.path||process.stdin);
       },
       "isDefault": true,
       "hasDynamicOutputType": true,
@@ -40,10 +40,9 @@ module.exports = {
   },
 
   fn: function (inputs,exits) {
-    if (require('path').existsSync(inputs.path))
-      return exits.success(require('fs').createReadStream(inputs.path));
-    else
+    if (inputs.path && !require('fs').existsSync(inputs.path))
       return exits.pathError();
+    return exits.success(require('fs').createReadStream(inputs.path||process.stdin));
   },
 
 };

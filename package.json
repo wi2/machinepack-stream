@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "work with stream readable, writable",
   "scripts": {
-    "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
+    "test": "mocha tests/test.js && node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
   },
   "keywords": [
     "Stream",
@@ -13,9 +13,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "isstream": "^0.1.2",
     "machine": "^3.0.0"
   },
   "devDependencies": {
+    "mocha": "^2.2.4",
+    "should": "^6.0.1",
     "test-machinepack-mocha": "^0.2.2"
   },
   "machinepack": {
