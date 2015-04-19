@@ -14,7 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "isstream": "^0.1.2",
-    "machine": "^3.0.0"
+    "machine": "^3.0.0",
+    "resumer": "0.0.0"
   },
   "devDependencies": {
     "mocha": "^2.2.4",

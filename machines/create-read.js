@@ -14,6 +14,14 @@ module.exports = {
       "required": false,
       "type": "string",
       "name": "path"
+    },
+    "text": {
+      "friendlyName": "text",
+      "description": "A text",
+      "example": 'lorem ipsum',
+      "required": false,
+      "type": "string",
+      "name": "text"
     }
   },
 
@@ -45,24 +53,18 @@ module.exports = {
   fn: function (inputs,exits) {
     if (inputs.path && !require('fs').existsSync(inputs.path))
       return exits.pathError();
-    else {
-      if (!inputs.text)
-        inputs.text = '';
-      var stream = new (require('stream'))();
-      stream.on('data', function(data) {
-        process.stdout.write(data);
-      });
-      stream.emit('data', inputs.text);
-    }
+    else if (!inputs.text)
+      inputs.text = '';
+
     try {
-      return exits.success(inputs.path
-                          ?
-                          require('fs').createReadStream(inputs.path)
-                          :
-                          stream);
-    } catch (err) {
-      return exits.error(err);
-    }
+      return exits.success(
+        inputs.path
+        ?
+        require('fs').createReadStream(inputs.path)
+        :
+        require('resumer')().queue(inputs.text).end()
+      );
+    } catch (err) { return exits.error(err); }
   },
 
 };
