@@ -1,0 +1,10 @@
+{
+  "machine": "minify",
+  "expectations": [
+    {
+      "todo": true,
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}
