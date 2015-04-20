@@ -59,7 +59,7 @@ module.exports = {
     };
 
     try {
-      return exits.success( (inputs.stream||process.stdin).pipe( new MdStream() ) );
+      return exits.success( inputs.stream ? inputs.stream.pipe(new MdStream()) : new MdStream())
     } catch (err) {
       return exits.error(err);
     }
