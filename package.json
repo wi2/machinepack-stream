@@ -1,6 +1,6 @@
 {
   "name": "machinepack-stream",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "work with stream readable, writable",
   "scripts": {
     "test": "mocha tests/test.js"
