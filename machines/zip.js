@@ -1,0 +1,51 @@
+module.exports = {
+
+  friendlyName: 'Zip',
+  description: 'Zip a stream',
+  extendedDescription: '',
+
+  sync: true,
+
+  inputs: {
+    "stream": {
+      "friendlyName": "stream",
+      "description": "A readable stream",
+      "typeclass": "*",
+      "required": false,
+      "name": "stream"
+    }
+  },
+
+  defaultExit: 'success',
+
+  exits: {
+    error: {
+      description: 'Unexpected error occurred.',
+    },
+    errorNotStream: {
+      description: "It's not a valid stream"
+    },
+    success: {
+      description: 'Done.',
+      "getExample": function(inputs, env, input) {
+        return require('fs').createWriteStream(process.stdout);
+      },
+      "isDefault": true,
+      "hasDynamicOutputType": true,
+      "name": "success",
+      "friendlyName": "success"
+    },
+
+  },
+
+  fn: function (inputs,exits) {
+    if (inputs.stream && require('isstream')(inputs.stream) !== true)
+      return exits.errorNotStream({error: "It's not a valid stream"});
+    try {
+      return exits.success( (inputs.stream||process.stdin).pipe(require('zlib').createGzip()) );
+    } catch (err) {
+      return exits.error(err);
+    }
+  },
+
+};

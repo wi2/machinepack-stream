@@ -17,6 +17,7 @@
   "dependencies": {
     "isstream": "^0.1.2",
     "machine": "^3.0.0",
+    "marked": "^0.3.3",
     "resumer": "0.0.0"
   },
   "devDependencies": {
@@ -29,7 +30,10 @@
     "machineDir": "machines/",
     "machines": [
       "create-read",
-      "create-write"
+      "create-write",
+      "zip",
+      "unzip",
+      "md"
     ],
     "testsUrl": "https://travis-ci.org/"
   },
