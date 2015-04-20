@@ -52,13 +52,24 @@ describe('zip / unzip stream', function(){
   });
 });
 
-
 describe('Markdown', function(){
   it('should be done and copy README.md to html file', function(done){
     var input = stream.createRead({path: 'README.md'}).execSync();
     var output = stream.createWrite({path: 'README.md.html'}).execSync();
     input
       .pipe( stream.md().execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+});
+
+describe('Minify', function(){
+  it('should be done and copy README.md and minify it', function(done){
+    var input = stream.createRead({path: 'README.md.html'}).execSync();
+    var output = stream.createWrite({path: 'README.md.minify.html'}).execSync();
+    input
+      .pipe( stream.md().execSync() )
+      .pipe( stream.minify().execSync() )
       .pipe( output )
       .on('close', done);
   });
