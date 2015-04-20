@@ -23,11 +23,8 @@ module.exports = {
     error: {
       description: 'Unexpected error occurred.',
     },
-    pathError: {
-      description: 'File does not exist.',
-    },
-    noStreamError: {
-      description: 'does not exist.',
+    errorNotStream: {
+      description: "It's not a valid stream"
     },
     success: {
       description: 'Done.',
