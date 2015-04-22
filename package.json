@@ -1,6 +1,6 @@
 {
   "name": "machinepack-stream",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "work with stream readable, writable",
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
@@ -35,7 +35,8 @@
       "zip",
       "unzip",
       "md",
-      "minify"
+      "minify",
+      "to-string"
     ],
     "testsUrl": "https://travis-ci.org/"
   },

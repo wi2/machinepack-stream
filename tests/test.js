@@ -18,6 +18,8 @@ describe('readStream and write Stream', function(){
   });
 });
 
+
+
 describe('zip / unzip stream', function(){
   it('should be done and zip a stream', function(done){
     var input = stream.createRead({path: 'README.md'}).execSync();
@@ -74,3 +76,26 @@ describe('Minify', function(){
       .on('close', done);
   });
 });
+
+describe('ToString() method', function(){
+  it('should be done and return a string', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.toString({stream:input}).exec(function (err, data) {
+      // console.log(err,data);
+      should (typeof data).be.equal('string');
+      done();
+    });
+  });
+  it('should be done and return a string', function(done){
+    var input = stream.createRead({text: 'A simple content'}).execSync();
+    var output = stream.toString({stream:input}).exec(function (err, data) {
+      // console.log(err,data);
+      should (typeof data).be.equal('string');
+      done();
+    });
+  });
+});
+
+
+
+
