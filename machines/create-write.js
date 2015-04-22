@@ -35,8 +35,17 @@ module.exports = {
     },
     success: {
       description: 'Done.',
-      "getExample": function(inputs, env, input) {
-        return require('fs').createWriteStream(process.stdout);
+      "example": {
+        "_writableState": {},
+        "writable": true,
+        "domain": null,
+        "_events": {},
+        "_maxListeners": 10,
+        "path": ".tmp/test.txt",
+        "fd": 25,
+        "flags": "w",
+        "mode": 438,
+        "bytesWritten": 0
       },
       "isDefault": true,
       "hasDynamicOutputType": true,

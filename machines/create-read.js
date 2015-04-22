@@ -38,9 +38,20 @@ module.exports = {
       description: 'does not exist.',
     },
     success: {
-      description: 'Done.',
-      "getExample": function(inputs, env, input) {
-        return require('fs').createReadStream(inputs.path||process.stdin);
+      "description": "Done.",
+      "example": {
+        "_readableState": {},
+        "readable": false,
+        "domain": null,
+        "_events": {},
+        "_maxListeners": 10,
+        "path": ".tmp/test.txt",
+        "fd": null,
+        "flags": "r",
+        "mode": 438,
+        "autoClose": true,
+        "destroyed": true,
+        "closed": true
       },
       "isDefault": true,
       "hasDynamicOutputType": true,
@@ -51,7 +62,8 @@ module.exports = {
   },
 
   fn: function (inputs,exits) {
-    var fs = require('fs');
+    var fs = require('fs'),
+      util = require('util');
     if (inputs.path && !fs.existsSync(inputs.path))
       return exits.pathError();
     else if (!inputs.text)
