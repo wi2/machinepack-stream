@@ -10,7 +10,7 @@ module.exports = {
     "stream": {
       "friendlyName": "stream",
       "description": "A readable stream",
-      "example": 'a stream',
+      "typeclass": "*",
       "required": false,
       "name": "stream"
     },
