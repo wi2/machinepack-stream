@@ -36,7 +36,7 @@
       "unzip",
       "md",
       "minify",
-      "to-string"
+      "stringify"
     ],
     "testsUrl": "https://travis-ci.org/"
   },

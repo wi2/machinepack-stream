@@ -80,7 +80,7 @@ describe('Minify', function(){
 describe('ToString() method', function(){
   it('should be done and return a string', function(done){
     var input = stream.createRead({path: 'README.md'}).execSync();
-    var output = stream.toString({stream:input}).exec(function (err, data) {
+    var output = stream.stringify({stream:input}).exec(function (err, data) {
       // console.log(err,data);
       should (typeof data).be.equal('string');
       done();
@@ -88,7 +88,7 @@ describe('ToString() method', function(){
   });
   it('should be done and return a string', function(done){
     var input = stream.createRead({text: 'A simple content'}).execSync();
-    var output = stream.toString({stream:input}).exec(function (err, data) {
+    var output = stream.stringify({stream:input}).exec(function (err, data) {
       // console.log(err,data);
       should (typeof data).be.equal('string');
       done();

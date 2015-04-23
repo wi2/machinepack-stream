@@ -1,6 +1,6 @@
 module.exports = {
 
-  friendlyName: 'To string',
+  friendlyName: 'Stringify',
   description: 'a toString method',
   extendedDescription: '',
 
