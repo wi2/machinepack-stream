@@ -75,6 +75,42 @@ describe('Minify', function(){
   });
 });
 
+describe('Replace', function(){
+  it('should be done and copy README.md and replace some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.replace.md'}).execSync();
+    input
+      .pipe( stream.replace({search:'Usage', replace:'__Usage__'}).execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+  it('should be done and copy README.md and replace some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.replace.2.md'}).execSync();
+    input
+      .pipe( stream.replace({search:'Usage'}).execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+  it('should be done and copy README.md and replace some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.replace.3.md'}).execSync();
+    input
+      .pipe( stream.replace({search:['Usage','stream'], replace:'Mike'}).execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+  it('should be done and copy README.md and replace some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.replace.4.md'}).execSync();
+    input
+      .pipe( stream.replace({search:'Usage', replace:"Usage's Mike"}).execSync() )
+      .pipe( stream.replace({search:['wi2','bug']}).execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+});
+
 describe('ToString() method', function(){
   it('should be done and return a string', function(done){
     var input = stream.createRead({path: 'README.md'}).execSync();
