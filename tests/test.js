@@ -18,8 +18,6 @@ describe('readStream and write Stream', function(){
   });
 });
 
-
-
 describe('zip / unzip stream', function(){
   it('should be done and zip a stream', function(done){
     var input = stream.createRead({path: 'README.md'}).execSync();
@@ -88,7 +86,17 @@ describe('ToString() method', function(){
   });
   it('should be done and return a string', function(done){
     var input = stream.createRead({text: 'A simple content'}).execSync();
-    var output = stream.stringify({stream:input}).exec(function (err, data) {
+
+    var output = stream.stringify({stream:input.pipe( stream.md().execSync() )}).exec(function (err, data) {
+      // console.log(err,data);
+      should (typeof data).be.equal('string');
+      done();
+    });
+  });
+  it('should be done and return a string', function(done){
+    var input = stream.createRead({text: 'A simple content'}).execSync();
+
+    var output = stream.stringify({write:'README.md.stringwrite', stream:input.pipe( stream.md().execSync() )}).exec(function (err, data) {
       // console.log(err,data);
       should (typeof data).be.equal('string');
       done();

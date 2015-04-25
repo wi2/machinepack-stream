@@ -13,6 +13,11 @@ module.exports = {
       "typeclass": "*",
       "required": true,
       "name": "stream"
+    },
+    write: {
+      example: ".tmp/test.log",
+      description: "a path for writing file ",
+      required: false
     }
   },
 
@@ -47,6 +52,11 @@ module.exports = {
     strm.on('end', function(){
       return exits.success( str );
     });
+    if (inputs.write) {
+      var machine = require('machine')
+        , streamWrite = machine.build(require('./create-write'));
+      streamWrite({path:inputs.write, stream:inputs.stream}).execSync();
+    }
   },
 
 };
