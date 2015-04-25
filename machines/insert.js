@@ -15,19 +15,26 @@ module.exports = {
       "required": false,
       "name": "stream"
     },
-    "search": {
-      "friendlyName": "search",
-      "description": "A string or a string's array to search",
-      "typeclass": "*",
+    "text": {
+      "friendlyName": "text",
+      "description": "Insert a string before of after a string",
+      "example": "a string to insert",
       "required": true,
-      "name": "search"
+      "name": "text"
     },
-    "replace": {
-      "friendlyName": "replace",
-      "description": "A string, replace",
-      "example": "abc",
+    "after": {
+      "friendlyName": "after",
+      "description": "a string or string's array to search and insert text after",
+      "typeclass": "*",
       "required": false,
-      "name": "replace"
+      "name": "after"
+    },
+    "before": {
+      "friendlyName": "before",
+      "description": "a string or string's array to search and insert text before",
+      "typeclass": "*",
+      "required": false,
+      "name": "before"
     }
   },
 
@@ -70,25 +77,36 @@ module.exports = {
     var Transform = require('stream').Transform
       , util = require('util');
 
-    var ReplaceStream = function() {
+    var InsertStream = function() {
       Transform.call(this, {objectMode: true});
     };
-    util.inherits(ReplaceStream, Transform);
+    util.inherits(InsertStream, Transform);
+
+    var transformer = function(str, val, by, before){
+      var res = str+"";
+      if (util.isArray(val)) {
+        for(var i=0,len=val.length; i<len; i++){
+          res = res.split(val[i]).join(
+            before ? by + val[i] : val[i] + by
+          );
+        }
+      } else
+        res = res.split(val).join(before ? by + val : val + by);
+      return res;
+    }
 
     Transform.prototype._transform = function(chunk, encoding, callback) {
-      if (util.isArray(inputs.search)) {
-        var str = chunk.toString();
-        for(var i=0,len=inputs.search.length; i<len; i++){
-          str = str.split(inputs.search[i]).join(inputs.replace||"");
-        }
-        this.push(str);
-      } else
-        this.push(chunk.toString().split(inputs.search).join(inputs.replace||""));
+      var str = chunk.toString();
+      if (inputs.before)
+        str = transformer(str, inputs.before, inputs.text, true );
+      if (inputs.after)
+        str = transformer(str, inputs.after, inputs.text );
+      this.push(str);
       callback();
     };
 
     try {
-      return exits.success( inputs.stream ? inputs.stream.pipe(new ReplaceStream()) : new ReplaceStream())
+      return exits.success( inputs.stream ? inputs.stream.pipe(new InsertStream()) : new InsertStream())
     } catch (err) {
       return exits.error(err);
     }

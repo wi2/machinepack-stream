@@ -104,11 +104,47 @@ describe('Replace', function(){
     var input = stream.createRead({path: 'README.md'}).execSync();
     var output = stream.createWrite({path: 'README.md.replace.4.md'}).execSync();
     input
-      .pipe( stream.replace({search:'Usage', replace:"Usage's Mike"}).execSync() )
-      .pipe( stream.replace({search:['wi2','bug']}).execSync() )
+      .pipe( stream.replace({search:['wi2','bug','node','stream'], replace: "Mike"}).execSync() )
       .pipe( output )
       .on('close', done);
   });
+
+});
+
+describe('Insert', function(){
+  it('should be done and copy README.md and insert some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.insert.md'}).execSync();
+    input
+      .pipe( stream.insert({text:' of Mike', after:'Usage'}).execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+  it('should be done and copy README.md and insert some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.insert.2.md'}).execSync();
+    input
+      .pipe( stream.insert({text:'Mike and ', before:'Usage'}).execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+  it('should be done and copy README.md and insert some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.insert.3.md'}).execSync();
+    input
+      .pipe( stream.insert({text:' [Mike] ', after:'stream'}).execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+  it('should be done and copy README.md and insert some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.insert.4.md'}).execSync();
+    input
+      .pipe( stream.insert({before:['Usage','bug','node', 'wi2'], text:"[YES]"}).execSync() )
+      .pipe( output )
+      .on('close', done);
+  });
+
 });
 
 describe('ToString() method', function(){

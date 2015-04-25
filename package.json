@@ -37,7 +37,8 @@
       "md",
       "minify",
       "stringify",
-      "replace"
+      "replace",
+      "insert"
     ],
     "testsUrl": "https://travis-ci.org/"
   },
