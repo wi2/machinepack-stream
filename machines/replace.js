@@ -71,11 +71,13 @@ module.exports = {
       , util = require('util');
 
     var ReplaceStream = function() {
+      if ( !(this instanceof ReplaceStream) )
+        return( new ReplaceStream() );
       Transform.call(this, {objectMode: true});
     };
     util.inherits(ReplaceStream, Transform);
 
-    Transform.prototype._transform = function(chunk, encoding, callback) {
+    ReplaceStream.prototype._transform = function(chunk, encoding, callback) {
       if (util.isArray(inputs.search)) {
         var str = chunk.toString();
         for(var i=0,len=inputs.search.length; i<len; i++){

@@ -58,11 +58,13 @@ module.exports = {
       , minify = require('html-minifier').minify;
 
     var MinifyStream = function() {
+      if ( !(this instanceof MinifyStream) )
+        return( new MinifyStream() );
       Transform.call(this, {objectMode: true});
     };
     util.inherits(MinifyStream, Transform);
 
-    Transform.prototype._transform = function(chunk, encoding, callback) {
+    MinifyStream.prototype._transform = function(chunk, encoding, callback) {
       this.push(minify(chunk.toString()));
       callback();
     };

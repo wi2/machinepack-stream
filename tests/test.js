@@ -136,16 +136,35 @@ describe('Insert', function(){
       .pipe( output )
       .on('close', done);
   });
+});
+
+describe('Replace and Insert', function(){
   it('should be done and copy README.md and insert some content inside', function(done){
     var input = stream.createRead({path: 'README.md'}).execSync();
-    var output = stream.createWrite({path: 'README.md.insert.4.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.insert.replace.md'}).execSync();
+    var stream1 = stream.insert({before:['Usage', 'wi2', 'bug'], text:"[YES]"}).execSync();
+    var stream2 = stream.replace({search:['node','pack'], replace:"[NO]"}).execSync();
     input
-      .pipe( stream.insert({before:['Usage','bug','node', 'wi2'], text:"[YES]"}).execSync() )
+      .pipe( stream1 )
+      .pipe( stream2 )
+      .pipe( output )
+      .on('close', done);
+  });
+  it('should be done and copy README.md and insert some content inside', function(done){
+    var input = stream.createRead({path: 'README.md'}).execSync();
+    var output = stream.createWrite({path: 'README.md.replace.insert.html'}).execSync();
+    var stream1 = stream.insert({before:['Usage', 'wi2', 'bug'], text:"[YES]"}).execSync();
+    var stream2 = stream.replace({search:['node','pack'], replace:"[NO]"}).execSync();
+    input
+      .pipe( stream1 )
+      .pipe( stream2 )
+      .pipe( stream.md().execSync() )
       .pipe( output )
       .on('close', done);
   });
 
 });
+
 
 describe('ToString() method', function(){
   it('should be done and return a string', function(done){

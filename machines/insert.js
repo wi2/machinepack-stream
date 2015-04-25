@@ -78,6 +78,8 @@ module.exports = {
       , util = require('util');
 
     var InsertStream = function() {
+      if ( !(this instanceof InsertStream) )
+        return( new InsertStream() );
       Transform.call(this, {objectMode: true});
     };
     util.inherits(InsertStream, Transform);
@@ -95,7 +97,7 @@ module.exports = {
       return res;
     }
 
-    Transform.prototype._transform = function(chunk, encoding, callback) {
+    InsertStream.prototype._transform = function(chunk, encoding, callback) {
       var str = chunk.toString();
       if (inputs.before)
         str = transformer(str, inputs.before, inputs.text, true );

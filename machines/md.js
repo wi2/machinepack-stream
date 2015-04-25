@@ -57,11 +57,13 @@ module.exports = {
       , marked = require('marked');
 
     var MdStream = function() {
+      if ( !(this instanceof MdStream) )
+        return( new MdStream() );
       Transform.call(this, {objectMode: true});
     };
     util.inherits(MdStream, Transform);
 
-    Transform.prototype._transform = function(chunk, encoding, callback) {
+    MdStream.prototype._transform = function(chunk, encoding, callback) {
       this.push(marked(chunk.toString()));
       callback();
     };
