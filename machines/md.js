@@ -52,29 +52,13 @@ module.exports = {
     if (inputs.stream && require('isstream')(inputs.stream) !== true)
       return exits.errorNotStream({error: "It's not a valid stream"});
 
-    var Transform = require('stream').Transform
-      , util = require('util')
+    var MdStream = require('../lib/stream-transformer.js').simple()
       , marked = require('marked');
 
-    var MdStream = function() {
-      if ( !(this instanceof MdStream) )
-        return( new MdStream() );
-      Transform.call(this, {objectMode: true});
-    };
-    util.inherits(MdStream, Transform);
-
-    MdStream.prototype._transform = function(chunk, encoding, callback) {
-      this.push(marked(chunk.toString()));
-      callback();
-    };
-
     try {
-      return exits.success( inputs.stream ? inputs.stream.pipe(new MdStream()) : new MdStream())
-    } catch (err) {
-      return exits.error(err);
-    }
+      var mstream = new MdStream(marked);
+      return exits.success( inputs.stream ? inputs.stream.pipe(mstream) : mstream);
+    } catch (err) { return exits.error(err); }
   },
-
-
 
 };

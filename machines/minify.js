@@ -53,27 +53,13 @@ module.exports = {
     if (inputs.stream && require('isstream')(inputs.stream) !== true)
       return exits.errorNotStream({error: "It's not a valid stream"});
 
-    var Transform = require('stream').Transform
-      , util = require('util')
+    var MinifyStream = require('../lib/stream-transformer.js').simple()
       , minify = require('html-minifier').minify;
 
-    var MinifyStream = function() {
-      if ( !(this instanceof MinifyStream) )
-        return( new MinifyStream() );
-      Transform.call(this, {objectMode: true});
-    };
-    util.inherits(MinifyStream, Transform);
-
-    MinifyStream.prototype._transform = function(chunk, encoding, callback) {
-      this.push(minify(chunk.toString()));
-      callback();
-    };
-
     try {
-      return exits.success( inputs.stream ? inputs.stream.pipe(new MinifyStream()) : new MinifyStream())
-    } catch (err) {
-      return exits.error(err);
-    }
+      var mstream = new MinifyStream(minify);
+      return exits.success( inputs.stream ? inputs.stream.pipe(mstream) : mstream);
+    } catch (err) { return exits.error(err); }
   },
 
 };
