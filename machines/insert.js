@@ -1,8 +1,8 @@
 module.exports = {
 
 
-  friendlyName: 'Replace',
-  description: 'Search and replace',
+  friendlyName: 'Insert',
+  description: 'Insert content before or after a string',
   extendedDescription: '',
 
   sync: true,
