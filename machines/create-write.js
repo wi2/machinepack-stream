@@ -34,23 +34,7 @@ module.exports = {
       description: "It's not a valid stream"
     },
     success: {
-      description: 'Done.',
-      "example": {
-        "_writableState": {},
-        "writable": true,
-        "domain": null,
-        "_events": {},
-        "_maxListeners": 10,
-        "path": ".tmp/test.txt",
-        "fd": 25,
-        "flags": "w",
-        "mode": 438,
-        "bytesWritten": 0
-      },
-      "isDefault": true,
-      "hasDynamicOutputType": true,
-      "name": "success",
-      "friendlyName": "success"
+      description: 'Done.'
     },
 
   },

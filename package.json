@@ -1,6 +1,6 @@
 {
   "name": "machinepack-stream",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "work with stream readable, writable",
   "scripts": {
     "test": "mocha tests/test.js"
@@ -17,14 +17,14 @@
   "dependencies": {
     "html-minifier": "^0.7.2",
     "isstream": "^0.1.2",
-    "machine": "^3.0.0",
+    "machine": "^10.4.0",
     "marked": "^0.3.3",
     "resumer": "0.0.0"
   },
   "devDependencies": {
-    "mocha": "^2.2.4",
-    "should": "^6.0.1",
-    "test-machinepack-mocha": "^0.2.2"
+    "mocha": "^2.2.5",
+    "should": "^7.0.2",
+    "test-machinepack-mocha": "^2.1.1"
   },
   "machinepack": {
     "friendlyName": "Stream",
