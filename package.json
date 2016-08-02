@@ -15,16 +15,16 @@
   "author": "wi2",
   "license": "MIT",
   "dependencies": {
-    "html-minifier": "^0.7.2",
+    "html-minifier": "^3.0.2",
     "isstream": "^0.1.2",
-    "machine": "^10.4.0",
-    "marked": "^0.3.3",
+    "machine": "^13.0.0-0",
+    "marked": "^0.3.6",
     "resumer": "0.0.0"
   },
   "devDependencies": {
-    "mocha": "^2.2.5",
+    "mocha": "^3.0.0",
     "should": "^7.0.2",
-    "test-machinepack-mocha": "^2.1.1"
+    "test-machinepack-mocha": "^2.1.5"
   },
   "machinepack": {
     "friendlyName": "Stream",
